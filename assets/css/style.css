@@ -1,0 +1,65 @@
+body {
+    width: 100%;
+    background-color: rgb(36, 34, 34);
+    background-image: url(../images/80srock-3.jpg)
+}
+
+h1 {
+    font-size: 60px;
+    text-align: center;
+    color: red;
+  font-family: courier;
+   margin: 0 auto;
+    width: 700px;
+}
+h2 {
+    font-family: courier;
+    font-size: 20px;
+    padding-top: 10px;
+}
+
+p{ color: black;
+    }
+.sidebar {
+    padding: 5px;
+    position: relative;
+    margin-bottom: 5px;
+    font-family: courier;
+    font-size: 12px;
+}
+span {
+    border: solid red 2px;
+    padding-left: 10px;
+    padding-right:10px;
+    background-color: rgba(128, 128, 128, 0.418); 
+    font-size: 15px;
+    color: red;
+    
+    }
+
+.background {
+    background-image: url("http://agora.xtec.cat/escjoanmaragall/wp-content/uploads/usu115/2017/09/maxresdefault-1.jpg");
+    background-image: url("../images/backsplash.jpg");
+    border: solid 5px red;
+}
+
+.container {
+    background-color: white;
+    background-repeat: no-repeat;
+    background-image: width=1000px; height: 100%;
+    margin: 0 auto;
+    margin-top: 25px;
+    text-align: center;
+    border: solid 3px red;
+    
+}
+#currentword {
+    font-size: 30px;
+    font-family: 'Press Start 2P', cursive;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+#scoreboard {
+    padding: 20px;
+}
+
