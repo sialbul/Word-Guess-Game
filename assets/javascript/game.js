@@ -16,119 +16,67 @@ var guessesRemaining= 9;
 //All functions
 
 function Game(){
-//game start function
+    var audio = document.getElementById("gameAudio");
+    // audio.setAttribute("src",);
+    // audio.play()
+    //game start function
 
-//computer generates random word from word array
-randomWord = words[Math.floor(Math.random()*words.length)];
+    //computer generates random word from word array
+    randomWord = words[Math.floor(Math.random()*words.length)];
 
-//split the individual word into separate arrays, and store in new array
-lettersOfWord = randomWord.split ("");
+    //split the individual word into separate arrays, and store in new array
+    lettersOfWord = randomWord.split ("");
 
-//store length of word in blanks, for later use
-blanks = lettersOfWord.length;
+    //store length of word in blanks, for later use
+    blanks = lettersOfWord.length;
 
-//creating a loop to generate "_" for each letter in array stored in blanks
-for (var i=0; i<blanks; i++) {blanksAndCorrect.push("_"); }
+    //creating a loop to generate "_" for each letter in array stored in blanks
+    for (var i=0; i<blanks; i++) {blanksAndCorrect.push("_"); }
 
-//showing the "_" within HTML
-document.getElementById("currentword").innerHTML = ""+ blanksAndCorrect.join("");
+    //showing the "_" within HTML
+    document.getElementById("currentword").innerHTML = ""+ blanksAndCorrect.join("");
 
 
-//console logging
-console.log(randomWord);
-console.log(lettersOfWord)
-console.log(blanks)
-console.log(blanksAndCorrect)
+    //console logging
+    console.log(randomWord);
+    console.log(lettersOfWord)
+    console.log(blanks)
+    console.log(blanksAndCorrect)
 }
-
-
+Game();
 //Audio Function
 
-var bonjovi = document.getElementById("LivinOnAPrayer.mp3");
-var nirvana=  document.getElementById("SmellsLike.mp3");
-var guns=  document.getElementById("NovemberRain.mp3");
-var aerosmith=  document.getElementById("DreamOn.mp3");
-var queen=  document.getElementById("Iwanttobreakfree.mp3");
-var metallica=  document.getElementById("EnterSandman.mp3");
 
 
+var images = {
+    bonjovi:"assets/images/bonjovi.jpg",
+    nirvana:"assets/images/nirvana.jpg"  ,  
+    gunsroses: "assets/images/gunsroses.jpg",
+    aerosmith: "assets/images/aerosmith.jpg",
+    queen: "assets/images/queen.jpg ",
+    metallica: "assets/images/metallica.jpg"
+}
+
+var songs = {
+    bonjovi :"assets/images/LivinOnAPrayer.mp3",
+    nirvana:  "assets/images/SmellsLike.mp3",
+    gunsroses: "assets/images/NovemberRain.mp3",
+    aerosmith: "assets/images/DreamOn.mp3",
+    queen: "assets/images/Youdontfoolme.mp3",
+    metallica: "assets/images/EnterSandman.mp3"
+}
 function aud() {
 
-    //bonjovi audio &image
-if (randomWord === words[0]){
-nirvana.pause();
-guns.pause();
-aerosmith.pause();
-queen.pause();
-metallica.pause();
-bonjovi.play();
-document.getElementById ("image").src= "./assets/images/bonjovi.jpg";
-document.getElementById ("audio").src= "./assets/images/LivingOnAPrayer.mp3";}
-
-
-    //nirvana audio &image
-else if (randomWord === words[1]){
-guns.pause();
-aerosmith.pause();
-queen.pause();
-metallica.pause();
-bonjovi.pause()
-nirvana.play();
-document.getElementById ("image").src= "./assets/images/nirvana.jpg";
-document.getElementById ("audio").src= "./assets/images/SmellsLike.mp3";
+    //this one is the short one
+//alphabet finished
+//image objects
+document.getElementById ("image").src= images[randomWord];
+document.getElementById ("gameAudio").src= songs[randomWord];
+document.getElementById ("gameAudio").play();
 }
 
- //gunsroses audio & image
-
-else if (randomWord === words[2]){
-aerosmith.pause();
-queen.pause();
-metallica.pause();
-bonjovi.pause()
-nirvana.pause();
-guns.play();
-document.getElementById ("image").src= "./assets/images/gunsroses.png";
-document.getElementById ("audio").src= "./assets/images/NovemberRain.mp3";
-
-}
-
-// aerosmith
-else if (randomWord === words[3]){
-    queen.pause();
-    metallica.pause();
-    bonjovi.pause()
-    nirvana.pause();
-    guns.pause();
-    aerosmith.play();
-    document.getElementById ("image").src= "./assets/images/aerosmith.jpg ";
-    document.getElementById ("audio").src= "./assets/images/DreamOn.mp3";}
-
-// queen
-else if (randomWord === words[4]){
-    metallica.pause();
-    bonjovi.pause()
-    nirvana.pause();
-    guns.pause();
-    aerosmith.pause();
-    queen.play();
-    document.getElementById ("image").src= "./assets/images/queen.jpg ";
-    document.getElementById ("audio").src= "./assets/images/Iwanttobreakfree.mp3";}
-
-
-// metallica
-else if (randomWord === words[5]){
-    bonjovi.pause()
-    nirvana.pause();
-    guns.pause();
-    aerosmith.pause();
-    queen.pause();
-    metallica.play();
-    document.getElementById ("image").src="./assets/images/metallica.jpg";
-    document.getElementById ("audio").src= "./assets/images/EnterSandman.mp3";}
-
-
-};
-
+function enableMute() { gameAudio.muted = true;
+  } 
 //reset function
 
 function reset(){
@@ -162,17 +110,18 @@ function checkLetters (letter) {
     console.log(blanksAndCorrect);
 }
 
+
+
 //final function
 
 function complete() {
     console.log("wins:"+wins+"|losses:"+ losses+ "|guesses left:"+ guessesRemaining)
 
     //if won..
-
-if (lettersOfWord.toString() == blanksAndCorrect.toString())
-{wins++;
+if (lettersOfWord.toString() === blanksAndCorrect.toString()) {
+    wins++;
     aud()
-    reset()
+    setTimeout(reset, 3000);
     //display wins on screen
     document.getElementById("winstracker").innerHTML=" "+wins;
 
@@ -194,13 +143,17 @@ document.getElementById("guessesremaining").innerHTML=" "+guessesRemaining;
 //check for keyup, and convert to lowercase then store in guesses
 document.onkeyup = function (event) {
     var guesses = String.fromCharCode(event.keyCode).toLowerCase();
-    //check to see if guess entered matches value of random word
-    checkLetters(guesses);
-    //process wins/loss 
-    complete();
-    //store player guess in console for reference 
-    console.log(guesses);
+    var alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","w","x","v","y","z","enter","space"];
+    if (alphabet.includes(guesses)) {
 
-    //display/store incorrect letters on screen
-    document.getElementById("playerguesses").innerHTML = "  " + wrongGuess.join(" ");
+        //check to see if guess entered matches value of random word
+        checkLetters(guesses);
+        //process wins/loss 
+        complete();
+        //store player guess in console for reference 
+        console.log(guesses);
+        
+        //display/store incorrect letters on screen
+        document.getElementById("playerguesses").innerHTML = "  " + wrongGuess.join(" ");
+    }
 }

@@ -3,36 +3,34 @@
   <head>
     <meta charset="UTF-8">
     <title>Hangman!</title>
-    <script src="assets/javascript/game.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <link href="assets/css/style.css" rel="stylesheet" type="text/css">
+
 
 </head>
 <body>
     <div class="container">
         <div class="jumbotron">
-
-        <div class = "row">   
-                <h1>HANGMAN 80`s ROCK</h1> 
-
+            <div id="hello"  class = "row">   
+                <h1>HANGMAN 80`s ROCK
+                </h1> 
+            </div>
         </div>
-        </div>
+        
         <div class="row">
-
         </div>
+        
         <div class="row">
             <div class= "col-lg-6">
+                <div id="scoreboard">
+                    <h2>Press Any Letter To Start To Game!
+                    </h2>
+                </div>
                 
-                    <div id="scoreboard">
-                            <h2>Press Any Key To Guess This Word!
-                            </h2>
-                        </div>
-                <h3 id="currentword">_ _ _ _ _
+                <h3 id="currentword">* * * * *
                 </h3>
                 
-               
-                
-                <!--Wins counter Container-->
+               <!--Wins counter Container-->
                 <div class="sidebar">
                     <h3>WINS:
                         <span id="winstracker"></span>
@@ -46,14 +44,13 @@
                     </h3>
                 </div>
                     
-                               
                 <!--Wrong guesses container-->
                 <div class="sidebar">
                     <h3>LETTERS YOU GUESSED WRONG:
                         <span id="playerguesses"></span>
                     </h3>
-                    
                 </div>
+
                 <!--Guesses left Container-->
                 <div class="sidebar">
                     <h3>GUESSES LEFT:
@@ -62,14 +59,25 @@
                 </div>
 
             </div>                 
-            <div class="col-lg-6">
+            <div id= "rightDiv" class="col-lg-6">
                 <div>
-                        <img id="image" src=" " width="40%" height="200">
+                    <img id="image" src="assets/images/80s-2.jpg" width="60%" height="250">
+
+                    
+                </div>
+                <button onclick="enableMute()" type="button">Mute sound</button>
+
+                <div>
+                    <audio id= "gameAudio">
+                        <source src="">
+                    </audio>
                 </div>
             </div>  
             
         </div>  
          
     </div>
+    
+    <script src="assets/javascript/game.js"></script>
 </body>
 </html>

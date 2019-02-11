@@ -16,6 +16,7 @@ h2 {
     font-family: courier;
     font-size: 20px;
     padding-top: 10px;
+    font-weight: bold;
 }
 
 p{ color: black;
@@ -63,3 +64,5 @@ span {
     padding: 20px;
 }
 
+button {font-family: 'Courier New', Courier, monospace;
+        margin: 20px;}
